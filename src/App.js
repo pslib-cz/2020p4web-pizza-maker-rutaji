@@ -1,23 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Calzone from "./page/Calzone"
+import Home from "./page/Home"
+import Ingredients from "./page/Ingredients"
+import Pizza from "./page/pizza"
+import Navbar from "./Component/Navbar"
+import C4 from "./page/404"
+
+import { IngredientsProvider } from "./Component/IngredientsProvider";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      
+      <Router>
+
+      <Navbar/>
+      <IngredientsProvider>
+        <Switch>
+        <Route  exact path='/'  component={Home} />
+        <Route  path='/order/pizza' exact component={Pizza} />
+        <Route  path='/order/calzone' exact component={Calzone} />
+        <Route  path='/ingredients' exact component={Ingredients} />
+        <Route component={C4}/>
+        </Switch>
+        </IngredientsProvider>
+      </Router>
     </div>
   );
 }
